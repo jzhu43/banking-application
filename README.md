@@ -58,6 +58,11 @@ APIs Created:
   Using Mock data, this API can fetch transaction statements based off of month given.
   ![image](https://github.com/user-attachments/assets/a929184b-8cc0-42ce-bc2b-92d020e0f2fe)
 
+Swagger API Documentation:
+
+- Run the application and run **http://localhost:8080/swagger-ui/index.html#/** to get the documentation of each API and their respective schemas
+![image](https://github.com/user-attachments/assets/1585db20-0f22-45f6-925c-3dcc267cd95d)
+
   
 
 # Task 2: Implement data layer
