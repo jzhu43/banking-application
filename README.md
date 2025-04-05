@@ -31,6 +31,11 @@ APIs Created:
 
     GET API /transactions/statements/{month}
 
+Swagger API Documentation:
+
+- Run the application and run **http://localhost:8080/swagger-ui/index.html#/** to get the documentation of each API and their respective schemas
+![image](https://github.com/user-attachments/assets/1585db20-0f22-45f6-925c-3dcc267cd95d)
+
 # Task 1: Implement accounts and transaction APIs (Completed)
 - Create API endpoints for above features
 - Include documentation for the API, you may use any specification of your choice (OpenAPI, Swagger, etc.)
@@ -58,16 +63,16 @@ APIs Created:
   Using Mock data, this API can fetch transaction statements based off of month given.
   ![image](https://github.com/user-attachments/assets/a929184b-8cc0-42ce-bc2b-92d020e0f2fe)
 
-Swagger API Documentation:
 
-- Run the application and run **http://localhost:8080/swagger-ui/index.html#/** to get the documentation of each API and their respective schemas
-![image](https://github.com/user-attachments/assets/1585db20-0f22-45f6-925c-3dcc267cd95d)
+# Task 2: Implement data layer (Completed)
+- Use an in-memory H2 database, this is important to ensure that the code can be run locally without additional local set up
+
+- Run the application and run **http://localhost:8080/h2-console** to access the h2 database on browser
+Should see these two tables that are created when application is ran:
+![image](https://github.com/user-attachments/assets/c37eab31-3a19-4ba7-9c87-3520a094c82b)
 
   
 
-# Task 2: Implement data layer
-- Use an in-memory H2 database, this is important to ensure that the code can be run locally without additional local set up
-
-# Task 3: Implement authentication
+# Task 3: Implement authentication (No Time)
 - Write an Ouath 2.0 client to authenticate and authorize the users. Please feel free to use stubs or mock controllers that can authenticate the request. You can create your own simple mock or use an open source solution https://github.com/navikt/mock-oauth2-server
 
