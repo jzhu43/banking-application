@@ -7,12 +7,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.cbdg.interview.banking_application.model.Account;
+import com.cbdg.interview.banking_application.repository.AccountRepository;
 
 //Account controller that has all account related APIs
 
 @RestController
 @RequestMapping("/accounts")
 public class AccountController{
+    
+    /*
+    Task 1
+
     private List<Account> mockAccounts = new ArrayList<>();
 
     public AccountController() {
@@ -22,7 +27,7 @@ public class AccountController{
         mockAccounts.add(new Account(3, "34567", "Checking", new BigDecimal(300.00)));
         mockAccounts.add(new Account(4, "45678", "Savings", new BigDecimal(400.00)));
     }
-
+    
     //GET API call to get list of accounts
     @GetMapping
     public List<Account> getAccounts(){
@@ -34,4 +39,27 @@ public class AccountController{
     public Account getAccountById(@PathVariable Integer id){
         return mockAccounts.stream().filter(account -> account.getId().equals(id)).findAny().orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account is not found!"));
     }
+
+    */
+
+
+    //Task 2
+    private final AccountRepository accountRepository;
+
+    public AccountController(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
+    //GET API call to get list of accounts
+    @GetMapping
+    public List<Account> getAllAccounts() {
+        return accountRepository.findAll(); // Fetch all accounts from the database
+    }
+
+    //GET API call to get a specific account based off of ID as a path variable
+    @GetMapping("/{id}")
+    public Account getAccountById(@PathVariable Long id) {
+        return accountRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account is not found!"));
+    }
+
 }

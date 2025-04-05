@@ -1,21 +1,32 @@
 package com.cbdg.interview.banking_application.model;
 import java.math.BigDecimal;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import jakarta.persistence.Id;
+
 //Class that defines an account and its attributes
+@Entity
+@Table(name = "accounts")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String accountNumber;
     private String accountType;
     private BigDecimal balance;
 
-    public Account(Integer id, String acctNumber, String acctType, BigDecimal bal){
-        this.id = id;
-        this.accountNumber = acctNumber;
-        this.accountType = acctType;
-        this.balance = bal;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

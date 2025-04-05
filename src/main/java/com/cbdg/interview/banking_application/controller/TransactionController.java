@@ -3,6 +3,7 @@ package com.cbdg.interview.banking_application.controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.cbdg.interview.banking_application.model.Transaction;
+import com.cbdg.interview.banking_application.repository.TransactionRepository;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -16,6 +17,9 @@ import java.time.Month;
 @RequestMapping("/transactions")
 public class TransactionController {
 
+    /*
+    Task 1 
+
     List<Transaction> allTransactions = new ArrayList<>();
     
     public TransactionController(){
@@ -27,7 +31,7 @@ public class TransactionController {
 
     //POST API call to createTransaction - takes in a request body
     @PostMapping
-    public Integer createTransaction(@RequestBody Transaction transaction){
+    public Long createTransaction(@RequestBody Transaction transaction){
         allTransactions.add(transaction);
         return transaction.getId();
     }
@@ -37,5 +41,28 @@ public class TransactionController {
     public List<Transaction> getMonthlyStatements(@PathVariable String month){
         return allTransactions.stream().filter(transaction -> transaction.getDate().getMonth() == Month.valueOf(month)).toList();
     }
+
+    */
     
+    //Task 2
+    private final TransactionRepository transactionRepository;
+
+    public TransactionController(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
+    //POST API call to createTransaction - takes in a request body
+    @PostMapping
+    public Transaction createTransaction(@RequestBody Transaction transaction) {
+        return transactionRepository.save(transaction);
+    }
+
+    //GET API call to grab monthly statement based off of what month is given
+    @GetMapping("/statements/{month}")
+    public List<Transaction> getMonthlyStatement(@PathVariable String month) {
+        return transactionRepository.findAll().stream().filter(transaction -> transaction.getDate().getMonth() == Month.valueOf(month)).toList();
+    }
+
+
+
 }

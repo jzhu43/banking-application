@@ -1,25 +1,36 @@
 package com.cbdg.interview.banking_application.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 //Class that defines the transaction and its attributes
+@Entity
+@Table(name = "transactions")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Transaction {
-    private Integer id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String type;
     private BigDecimal amount;
     private String description;
     private LocalDate date;
-    private String type;
 
-    public Transaction(Integer id, String type, BigDecimal amt, String desc, LocalDate date){
-        this.id = id;
-        this.type = type;
-        this.amount = amt;
-        this.description = desc;
-        this.date = date;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
